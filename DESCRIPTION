@@ -1,0 +1,11 @@
+Package: zouhw2
+Type: Package
+Title: HW2
+Version: 0.1.0
+Author: Xinyu Zou
+Maintainer: Xinyu Zou <xz685@cornell.edu>
+Description: Three functions that solves linear systems, linear regressions, elastic net problems, respectively.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports:"devtools", "doparallel","foreach"
