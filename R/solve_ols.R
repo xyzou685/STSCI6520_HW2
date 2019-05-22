@@ -1,4 +1,5 @@
 #' solve_ols
+#' 
 #' Solve linear system by Gauss-Seidel, Jacobi(sequential), or Jacobi(parallel) method
 #' @param A n*p matrix of the input system Ax=b
 #' @param b n*1 vector of the input system Ax=b
@@ -17,6 +18,7 @@
 #' solve_ols(a,b,method = "GS",iteration=100)
 #' solve_ols(a,b,cores=1,method = "Jacobi",iteration=100)
 #' solve_ols(a,b,cores=2,method = "Jacobi",iteration=100)
+
 solve_ols <- function(A,b,cores=1,method,iteration){
 
   n=length(b)
@@ -44,6 +46,8 @@ solve_ols <- function(A,b,cores=1,method,iteration){
     }
     else{
       #Jacobi (parallel)
+      library(doParallel)
+      library(foreach)
       cl <- makeCluster(cores)
       registerDoParallel(cl)
       outlist=foreach (i=1:iteration) %dopar% {

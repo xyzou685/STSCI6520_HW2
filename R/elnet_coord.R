@@ -1,5 +1,6 @@
 #' elnet_coord
-#' ﬁts elastic net to data using coordinate descent algorithm.
+#' 
+#' fits elastic net to data using coordinate descent algorithm.
 #'
 #' @param x n*p matrix;explanatory variables
 #' @param y n*1 vector;response variable
@@ -11,7 +12,7 @@
 #' @return betahat the estimated regression coefficient
 #' @export
 #'
-#' @examples 
+#' @examples
 #' x <- matrix(rnorm(500),100,5)
 #' y <- x%*%rep(-1,5)+rnorm(100)
 #' elnet_coord(x,y,0.5,1)

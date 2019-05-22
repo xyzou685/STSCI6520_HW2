@@ -1,12 +1,12 @@
 #' Algorithmic Leveraging Function
+#' 
 #' implements algorithmic leveraging for linear regression using uniform and leverage score based on subsampling of rows
 #' @param xi independent variables
 #' @param yi response variable
 #' @param r the sampling size,default=20% of the input data
-#'
 #' @return b_est the estimated regression coefficients
 #' @export
-#'
+#' 
 #' @examples
 #' x <- matrix(rnorm(500),100,5)
 #' y <- x%*%rep(-1,5)+rnorm(100)
