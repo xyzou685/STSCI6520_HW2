@@ -4,7 +4,7 @@
 ```{r global_options, include = FALSE}
 #Installation
 library(devtools)
-install_github("zouhw2")
+install_github("xyzou685/STSCI6520_HW2")
 ```
 ```{r global_options, include = FALSE}
 library("zouhw2")
