@@ -2,8 +2,7 @@
 % Please edit documentation in R/algo_leverage.R
 \name{algo_leverage}
 \alias{algo_leverage}
-\title{Algorithmic Leveraging Function
-implements algorithmic leveraging for linear regression using uniform and leverage score based on subsampling of rows}
+\title{Algorithmic Leveraging Function}
 \usage{
 algo_leverage(xi, yi, r = floor(0.2 * length(yi)))
 }
@@ -18,7 +17,6 @@ algo_leverage(xi, yi, r = floor(0.2 * length(yi)))
 b_est the estimated regression coefficients
 }
 \description{
-Algorithmic Leveraging Function
 implements algorithmic leveraging for linear regression using uniform and leverage score based on subsampling of rows
 }
 \examples{

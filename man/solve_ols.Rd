@@ -2,8 +2,7 @@
 % Please edit documentation in R/solve_ols.R
 \name{solve_ols}
 \alias{solve_ols}
-\title{solve_ols
-Solve linear system by Gauss-Seidel, Jacobi(sequential), or Jacobi(parallel) method}
+\title{solve_ols}
 \usage{
 solve_ols(A, b, cores = 1, method, iteration)
 }
@@ -22,7 +21,6 @@ solve_ols(A, b, cores = 1, method, iteration)
 xi n*1 vector, solution of the input system Ax=b
 }
 \description{
-solve_ols
 Solve linear system by Gauss-Seidel, Jacobi(sequential), or Jacobi(parallel) method
 }
 \examples{

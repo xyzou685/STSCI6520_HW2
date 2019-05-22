@@ -2,8 +2,7 @@
 % Please edit documentation in R/elnet_coord.R
 \name{elnet_coord}
 \alias{elnet_coord}
-\title{elnet_coord
-ﬁts elastic net to data using coordinate descent algorithm.}
+\title{elnet_coord}
 \usage{
 elnet_coord(x, y, a, lambda, betahat = rep(0, NCOL(x)),
   maxiteration = 100)
@@ -25,6 +24,10 @@ elnet_coord(x, y, a, lambda, betahat = rep(0, NCOL(x)),
 betahat the estimated regression coefficient
 }
 \description{
-elnet_coord
-ﬁts elastic net to data using coordinate descent algorithm.
+fits elastic net to data using coordinate descent algorithm.
+}
+\examples{
+x <- matrix(rnorm(500),100,5)
+y <- x\%*\%rep(-1,5)+rnorm(100)
+elnet_coord(x,y,0.5,1)
 }
