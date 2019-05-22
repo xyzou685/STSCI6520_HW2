@@ -11,7 +11,10 @@
 #' @return betahat the estimated regression coefficient
 #' @export
 #'
-#' @examples
+#' @examples 
+#' x <- matrix(rnorm(500),100,5)
+#' y <- x%*%rep(-1,5)+rnorm(100)
+#' elnet_coord(x,y,0.5,1)
 elnet_coord <- function(x,y,a,lambda,betahat=rep(0,NCOL(x)),maxiteration=100){
   for (i in 1:maxiteration) {
     beta1 <- betahat
