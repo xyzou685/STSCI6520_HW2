@@ -8,4 +8,4 @@ Description: Three functions that solves linear systems, linear regressions, ela
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-Imports:devtools, doparallel,foreach
+Imports:devtools, doParallel,foreach
