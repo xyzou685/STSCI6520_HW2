@@ -44,8 +44,6 @@ solve_ols <- function(A,b,cores=1,method,iteration){
     }
     else{
       #Jacobi (parallel)
-      library(doParallel)
-      library(foreach)
       cl <- makeCluster(cores)
       registerDoParallel(cl)
       outlist=foreach (i=1:iteration) %dopar% {
