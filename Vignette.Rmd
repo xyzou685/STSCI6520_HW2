@@ -1,0 +1,46 @@
+---
+title: "vignette"
+author: "Xinyu Zou"
+date: "May 22, 2019"
+output: html_document
+---
+This document introduces how to use the three functions in package "zouhw2". For the definition of each parameter in the functions, please refer to the documentations via help() function.
+ 
+#Install and load package
+```{r}
+library(devtools)
+install_github("xyzou685/STSCI6520_HW2")
+library(zouhw2)
+```
+
+#1. solve_ols(A,b,cores=1,method,iteration)
+set A to be a 4*4 square matrix, entries drawn IID from standard normal distribution
+v=[1,1,1]. b is a 4*1 vector and Av=b. When using this function with other input, need to make sure that column number of A=row number of b. Method must be either "GS" or "Jacobi".
+Now we use different approach to approximate v. You can change number of cores or number of iteration as you want.
+```{r}
+a=matrix(rnorm(16),4,4)
+v=rep(1,3)
+b=a%*%v
+#Gauss-Seidel
+solve_ols(a,b,method = "GS",iteration=100)
+#Sequential Jacobi
+solve_ols(a,b,cores=1,method = "Jacobi",iteration=100)
+#Parallel Jacobi
+solve_ols(a,b,cores=2,method = "Jacobi",iteration=100)
+```
+#2. algo_leverage(xi,yi,r=floor(0.2*length(yi)))
+xi can be a n*1 vector or a n*p matrix, yi is a n*1 vector. xi's row number(data size) must match yi's row number. r can be set as any integer between 1 and yi's length. In the tet code, we set xi to be a 100*5 matrix, yi to be a 100*1 vector, and $y_i=-x_i+\epsilon_i$.
+```{r}
+x <- matrix(rnorm(500),100,5)
+y <- x%*%rep(-1,5)+rnorm(100)
+algo_leverage(x,y)
+```
+
+#3. elnet_coord(x,y,a,lambda,betahat=rep(0,NCOL(x)),maxiteration=100)
+same test setting as algo_leverage() function, but you can determine more parameters: $\alpha \in [0,1], \lambda$ can be any real number, maxiteration can be any positive integer. The returned $\beta$ value is expected to be smaller as $\lambda$ increases.
+```{r}
+x <- matrix(rnorm(500),100,5)
+y <- x%*%rep(-1,5)+rnorm(100)
+elnet_coord(x,y,0.5,1)
+```
+
