@@ -14,7 +14,7 @@ algo_leverage(xi, yi, r = floor(0.2 * length(yi)))
 \item{r}{the sampling size,default=20% of the input data}
 }
 \value{
-b_est the estimated regression coefficients
+beta,the estimated regression coefficients
 }
 \description{
 implements algorithmic leveraging for linear regression using uniform and leverage score based on subsampling of rows

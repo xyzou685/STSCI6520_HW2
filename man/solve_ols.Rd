@@ -18,7 +18,7 @@ solve_ols(A, b, cores = 1, method, iteration)
 \item{iteration}{Number of iterations}
 }
 \value{
-xi n*1 vector, solution of the input system Ax=b
+x,n*1 vector, solution of the input system Ax=b
 }
 \description{
 Solve linear system by Gauss-Seidel, Jacobi(sequential), or Jacobi(parallel) method

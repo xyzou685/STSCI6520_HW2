@@ -21,7 +21,7 @@ elnet_coord(x, y, a, lambda, betahat = rep(0, NCOL(x)),
 \item{maxiteration}{maximum number of iteration allowed}
 }
 \value{
-betahat the estimated regression coefficient
+the estimated regression coefficient beta
 }
 \description{
 fits elastic net to data using coordinate descent algorithm.
