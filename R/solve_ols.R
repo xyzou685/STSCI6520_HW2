@@ -1,7 +1,7 @@
 #' solve_ols
 #' 
 #' Solve linear system by Gauss-Seidel, Jacobi(sequential), or Jacobi(parallel) method
-#' @param A n*p matrix of the input system Ax=b
+#' @param A n*n matrix of the input system Ax=b
 #' @param b n*1 vector of the input system Ax=b
 #' @param cores Number of cores used in parallel computing of Jacobi Mathod. If cores=1,use sequential method, otherwise use parallel computing.
 #' @param method Method to use. "GS"=Gauss-Seidel,"Jacobi"=Jacobi
@@ -12,10 +12,16 @@
 #' @export
 #'
 #' @examples
-#' a=matrix(rnorm(9),3,3)
-#' v=rep(1,3)
+#' n=10
+#' L <- diag(0, n)
+#' L[(row(L) - col(L)) == 1] <- -1
+#' U <- diag(0, n)
+#' U[(row(U) - col(U)) == -1] <- -1
+#' D <- diag(2, n)
+#' a <- L+D+U
+#' v <- as.matrix(rep(1,10))
 #' b=a%*%v
-#' solve_ols(a,b,method = "GS",iteration=100)
+#' solve_ols(a,b,method = "GS",iteration = 100)
 #' solve_ols(a,b,cores=1,method = "Jacobi",iteration=100)
 #' solve_ols(a,b,cores=2,method = "Jacobi",iteration=100)
 
@@ -35,6 +41,7 @@ solve_ols <- function(A,b,cores=1,method,iteration){
     #Gauss-Seidel
     for (i in 1:iteration){
       xi = (solve(L+D))%*%(b-U%*%xi)
+      #xi=solve(L+D)%*%b-solve(L+D)%*%U%*%xi
     }
   }
   else if(method=="Jacobi"){

@@ -7,7 +7,7 @@
 solve_ols(A, b, cores = 1, method, iteration)
 }
 \arguments{
-\item{A}{n*p matrix of the input system Ax=b}
+\item{A}{n*n matrix of the input system Ax=b}
 
 \item{b}{n*1 vector of the input system Ax=b}
 
@@ -24,10 +24,16 @@ x,n*1 vector, solution of the input system Ax=b
 Solve linear system by Gauss-Seidel, Jacobi(sequential), or Jacobi(parallel) method
 }
 \examples{
-a=matrix(rnorm(9),3,3)
-v=rep(1,3)
+n=10
+L <- diag(0, n)
+L[(row(L) - col(L)) == 1] <- -1
+U <- diag(0, n)
+U[(row(U) - col(U)) == -1] <- -1
+D <- diag(2, n)
+a <- L+D+U
+v <- as.matrix(rep(1,10))
 b=a\%*\%v
-solve_ols(a,b,method = "GS",iteration=100)
+solve_ols(a,b,method = "GS",iteration = 100)
 solve_ols(a,b,cores=1,method = "Jacobi",iteration=100)
 solve_ols(a,b,cores=2,method = "Jacobi",iteration=100)
 }

@@ -3,27 +3,33 @@ title: "vignette"
 author: "Xinyu Zou"
 date: "May 25, 2019"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 This document introduces how to use the three functions in package "zouhw2". Please make sure to install packages "askpass" and "sys" in advance and enter "3" when installing this package. For the definition of each parameter in the functions, please refer to the documentations via help() function.
  
 #Install and load package
 ```{r}
 library(devtools)
-install.packages("askpass")
-install.packages("sys")
+#install.packages("askpass")
+#install.packages("sys")
 install_github("xyzou685/STSCI6520_HW2")
 library(zouhw2)
 ```
 
 #1. solve_ols(A,b,cores=1,method,iteration)
-set A to be a 4*4 square matrix, entries drawn IID from standard normal distribution
-v=[1,1,1]. b is a 4*1 vector and Av=b. When using this function with other input, need to make sure that column number of A=row number of b. Method must be either "GS" or "Jacobi".
+set A to be a 10*10 square matrix, entries drawn IID from standard normal distribution,
+$v=1_{10}$. b is a 10*1 vector and $Av=b$. When using this function with other input, need to make sure that column number of A=row number of b. Method must be either "GS" or "Jacobi".
 Now we use different approach to approximate v. You can change number of cores or number of iteration as you want.
 ```{r}
-a=matrix(rnorm(16),4,4)
-v=rep(1,4)
+n=10
+L <- diag(0, n)
+L[(row(L) - col(L)) == 1] <- -1
+U <- diag(0, n)
+U[(row(U) - col(U)) == -1] <- -1
+D <- diag(2, n)
+a <- L+D+U
+v <- as.vector(rep(1,10))
 b=a%*%v
 #Gauss-Seidel
 solve_ols(a,b,method = "GS",iteration=100)
@@ -45,6 +51,6 @@ same test setting as algo_leverage() function, but you can determine more parame
 ```{r}
 x <- matrix(rnorm(500),100,5)
 y <- x%*%rep(-1,5)+rnorm(100)
-elnet_coord(x,y,a=0.5,lambda=1)
+elnet_coord(x,y,a=0.5,lambda=0.7)
 ```
 
